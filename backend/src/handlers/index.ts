@@ -3,8 +3,7 @@ import slug from "slug"
 import User from "../models/User"
 import { hashPassword } from "../utils/auth"
 
-
-export const createAccount = async(req:Request , res:Response) =>{
+export const createAccount = async(req:Request , res:Response) =>{ 
     const {email, password} = req.body
     const userExists = await User.findOne({email})
     
