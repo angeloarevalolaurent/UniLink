@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createAccount } from "./handlers";
+import { createAccount, login } from "./handlers";
 import { handleInputErrors } from "./middleware/validation";
 import { body } from "express-validator";
 
@@ -24,4 +24,15 @@ router.post('/auth/register',
     handleInputErrors,
     createAccount)
 
+
+router.post('/auth/login',
+    body('email')
+        .isEmail()
+        .withMessage('E-mail no valido'),
+    body('password')
+        .notEmpty()
+        .withMessage('El Password es obligatorio'),
+    handleInputErrors,
+    login
+)
 export default router

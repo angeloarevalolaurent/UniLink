@@ -25,3 +25,13 @@ export const createAccount = async(req:Request , res:Response) =>{
     await  user.save()
     res.status(200).json({msg: 'Registro recibido correctamente'})
 }
+
+
+export const login = async(req:Request , res:Response) =>{
+    const {email, password} = req.body
+    const user = await User.findOne({email})
+    if (!user) {
+        const error = new Error('El usuario no existe')
+        return res.status(404).json({error: error.message})
+    }
+}
