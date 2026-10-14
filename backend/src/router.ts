@@ -18,9 +18,9 @@ router.post('/auth/register',
         .withMessage('E-mail no valido'),
     body('password')
             .isLength({min: 8})
-            .withMessage('El password debe ser de al menos 8 caracteres')
+            .withMessage('El contraseña debe ser de al menos 8 caracteres')
             .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/)
-            .withMessage('El password debe incluir al menos una mayúscula, una minúscula y un número'),
+            .withMessage('El contraseña debe incluir al menos una mayúscula, una minúscula y un número'),
     handleInputErrors,
     createAccount)
 
