@@ -1,0 +1,176 @@
+
+import { Link } from "react-router-dom";
+
+export default function RegisterView() {
+  return (
+    <>
+      {/* Header */}
+      <header className="mb-7 space-y-3">
+        <h1 className="text-3xl font-extrabold tracking-tight text-cyan-400 sm:text-4xl">
+          Crea tu cuenta
+        </h1>
+
+        <p className="max-w-md text-sm leading-6 text-slate-300">
+          Reúne todos tus enlaces en un solo lugar y crea una página
+          que represente tu identidad digital.
+        </p>
+      </header>
+
+      {/* Form */}
+      <section className="rounded-3xl border border-cyan-400/20 bg-slate-900/90 p-6 shadow-2xl shadow-black/20 transition-colors duration-300 hover:border-cyan-400/30 sm:p-8">
+        <form className="space-y-5">
+          {/* Name */}
+          <div className="space-y-2">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-slate-200"
+            >
+              Nombre completo
+            </label>
+
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              placeholder="Angelo Arévalo"
+              required
+              className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+            />
+          </div>
+
+          {/* Email */}
+          <div className="space-y-2">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-slate-200"
+            >
+              Correo electrónico
+            </label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              placeholder="tu@correo.com"
+              required
+              className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+            />
+          </div>
+
+          {/* Custom URL */}
+          <div className="space-y-2">
+            <label
+              htmlFor="handle"
+              className="block text-sm font-medium text-slate-200"
+            >
+              Tu nombre de usuario
+            </label>
+
+            <div className="flex overflow-hidden rounded-xl border border-white/10 bg-slate-950/70 transition hover:border-white/20 focus-within:border-cyan-400 focus-within:ring-4 focus-within:ring-cyan-400/10">
+              <span className="flex shrink-0 items-center border-r border-white/10 px-3 text-xs text-cyan-400 sm:px-4 sm:text-sm">
+                unilink.to/
+              </span>
+
+              <input
+                id="handle"
+                name="handle"
+                type="text"
+                autoComplete="username"
+                placeholder="tu-usuario"
+                minLength={3}
+                maxLength={30}
+                pattern="[a-zA-Z0-9_-]+"
+                title="Usa letras, números, guiones o guiones bajos."
+                required
+                className="min-w-0 flex-1 bg-transparent px-3 py-3.5 text-sm text-white outline-none placeholder:text-slate-500 sm:px-4"
+              />
+            </div>
+
+            <p className="text-xs leading-5 text-slate-400">
+              Tu enlace personalizado para compartir todas tus redes.
+            </p>
+          </div>
+
+          {/* Password */}
+          <div className="space-y-2">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-slate-200"
+            >
+              Contraseña
+            </label>
+
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="new-password"
+              placeholder="Mínimo 8 caracteres"
+              minLength={8}
+              required
+              className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+            />
+          </div>
+
+          {/* Confirm Password */}
+          <div className="space-y-2">
+            <label
+              htmlFor="password_confirmation"
+              className="block text-sm font-medium text-slate-200"
+            >
+              Confirmar contraseña
+            </label>
+
+            <input
+              id="password_confirmation"
+              name="password_confirmation"
+              type="password"
+              autoComplete="new-password"
+              placeholder="Repite tu contraseña"
+              minLength={8}
+              required
+              className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+            />
+          </div>
+
+          {/* Primary CTA */}
+          <div className="pt-2">
+            <button
+              type="submit"
+              className="group flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-400 px-5 py-4 text-sm font-bold text-slate-950 shadow-lg shadow-cyan-400/10 transition duration-200 hover:bg-cyan-300 hover:shadow-cyan-400/20 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-400/30"
+            >
+              Crear mi cuenta
+
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </button>
+          </div>
+
+          <p className="text-center text-xs leading-5 text-slate-400">
+            Al registrarte, aceptas nuestros términos de servicio
+            y política de privacidad.
+          </p>
+        </form>
+      </section>
+
+      {/* Login */}
+      <div className="mt-7 border-t border-white/10 pt-6 text-center">
+        <p className="text-sm text-slate-300">
+          ¿Ya tienes una cuenta?{" "}
+          <Link
+            to="/auth/login"
+            className="font-semibold text-cyan-400 transition-colors hover:text-cyan-300 focus-visible:outline-none focus-visible:underline"
+          >
+            Inicia sesión
+          </Link>
+        </p>
+      </div>
+    </>
+  );
+}
