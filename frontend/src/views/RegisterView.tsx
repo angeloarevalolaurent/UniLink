@@ -1,7 +1,25 @@
 
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import ErrorMessage from "../components/ErrorMessage";
 
 export default function RegisterView() {
+  const initialState ={
+    name: '',
+    email: '',
+    handle:'',
+    password:'',
+    password_confirmation:''
+  }
+
+  const {register, watch, reset, handleSubmit,formState:{errors} } = useForm({defaultValues: initialState})
+
+  console.log(errors);
+  
+  const handleRegister = () =>{
+    console.log('desde register');
+    
+  }
   return (
     <>
       {/* Header */}
@@ -18,7 +36,7 @@ export default function RegisterView() {
 
       {/* Form */}
       <section className="rounded-3xl border border-cyan-400/20 bg-slate-900/90 p-6 shadow-2xl shadow-black/20 transition-colors duration-300 hover:border-cyan-400/30 sm:p-8">
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={handleSubmit(handleRegister)}>
           {/* Name */}
           <div className="space-y-2">
             <label
@@ -30,13 +48,15 @@ export default function RegisterView() {
 
             <input
               id="name"
-              name="name"
               type="text"
               autoComplete="name"
               placeholder="Angelo Arévalo"
-              required
               className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
-            />
+              {...register('name', {
+                  required:'El nombre es obligatorio'
+                })}
+           />
+          {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
           </div>
 
           {/* Email */}
@@ -50,13 +70,16 @@ export default function RegisterView() {
 
             <input
               id="email"
-              name="email"
               type="email"
               autoComplete="email"
               placeholder="tu@correo.com"
-              required
               className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+               {...register('email', {
+                  required:'El correo electrónico es obligatorio'
+                })}
             />
+            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+   
           </div>
 
           {/* Custom URL */}
@@ -75,19 +98,17 @@ export default function RegisterView() {
 
               <input
                 id="handle"
-                name="handle"
                 type="text"
                 autoComplete="username"
                 placeholder="tu-usuario"
-                minLength={3}
-                maxLength={30}
-                pattern="[a-zA-Z0-9_-]+"
-                title="Usa letras, números, guiones o guiones bajos."
-                required
                 className="min-w-0 flex-1 bg-transparent px-3 py-3.5 text-sm text-white outline-none placeholder:text-slate-500 sm:px-4"
+                 {...register('handle', {
+                  required:'Tu nombre de usuario es obligatorio'
+                })}
               />
+              
             </div>
-
+            {errors.handle && <ErrorMessage>{errors.handle.message}</ErrorMessage>}
             <p className="text-xs leading-5 text-slate-400">
               Tu enlace personalizado para compartir todas tus redes.
             </p>
@@ -104,14 +125,15 @@ export default function RegisterView() {
 
             <input
               id="password"
-              name="password"
               type="password"
               autoComplete="new-password"
               placeholder="Mínimo 8 caracteres"
-              minLength={8}
-              required
               className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+                 {...register('password', {
+                  required:'Tu contraseña es obligatorio'
+                })}
             />
+             {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
           </div>
 
           {/* Confirm Password */}
@@ -125,14 +147,15 @@ export default function RegisterView() {
 
             <input
               id="password_confirmation"
-              name="password_confirmation"
               type="password"
               autoComplete="new-password"
               placeholder="Repite tu contraseña"
-              minLength={8}
-              required
               className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+               {...register('password_confirmation', {
+                  required:'Repetir contraseña es obligatorio'
+                })}
             />
+             {errors.password_confirmation && <ErrorMessage>{errors.password_confirmation.message}</ErrorMessage>}
           </div>
 
           {/* Primary CTA */}
