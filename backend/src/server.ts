@@ -8,6 +8,9 @@ import { corsConfig } from "./config/cors";
 connectDB()
 const app = express()
 
+//CORS
+app.use(cors(corsConfig))
+
 
 //Leer datos 
 app.use(express.json())
