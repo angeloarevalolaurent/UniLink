@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../components/ErrorMessage";
+import PasswordStrengthChecklist from "../components/PasswordStrengthCkeckList";
 
 export default function RegisterView() {
   const initialState ={
@@ -14,7 +15,7 @@ export default function RegisterView() {
 
   const {register, watch, reset, handleSubmit,formState:{errors} } = useForm({defaultValues: initialState})
 
-  console.log(errors);
+  const passwordValue = watch('password') || ''
   
   const handleRegister = () =>{
     console.log('desde register');
@@ -74,8 +75,12 @@ export default function RegisterView() {
               autoComplete="email"
               placeholder="tu@correo.com"
               className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
-               {...register('email', {
-                  required:'El correo electrónico es obligatorio'
+               {...register("email", {
+                  required: "El Email es Obligatorio",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'Email No Válido'
+                  }
                 })}
             />
             {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
@@ -130,9 +135,14 @@ export default function RegisterView() {
               placeholder="Mínimo 8 caracteres"
               className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
                  {...register('password', {
-                  required:'Tu contraseña es obligatorio'
+                  required:'Tu contraseña es obligatorio',
+                  minLength:{
+                    value: 8,
+                    message:'La contraseña debe ser de mínimo 8 caracteres'
+                  }
                 })}
             />
+              <PasswordStrengthChecklist  password={passwordValue} />
              {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
           </div>
 
@@ -152,7 +162,8 @@ export default function RegisterView() {
               placeholder="Repite tu contraseña"
               className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
                {...register('password_confirmation', {
-                  required:'Repetir contraseña es obligatorio'
+                  required:'Repetir contraseña es obligatorio',
+                  validate: value => value === passwordValue || 'Las contraseñas no coinciden'
                 })}
             />
              {errors.password_confirmation && <ErrorMessage>{errors.password_confirmation.message}</ErrorMessage>}
