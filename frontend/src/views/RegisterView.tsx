@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../components/ErrorMessage";
 import PasswordStrengthChecklist from "../components/PasswordStrengthCkeckList";
+import type { RegisterForm } from "../types";
 
 export default function RegisterView() {
-  const initialState ={
+  const initialState:RegisterForm ={
     name: '',
     email: '',
     handle:'',
@@ -17,8 +18,8 @@ export default function RegisterView() {
 
   const passwordValue = watch('password') || ''
   
-  const handleRegister = () =>{
-    console.log('desde register');
+  const handleRegister = (formData: RegisterForm) =>{
+    console.log(formData);
     
   }
   return (
@@ -104,7 +105,7 @@ export default function RegisterView() {
               <input
                 id="handle"
                 type="text"
-                autoComplete="username"
+                autoComplete="angeloarevalo"
                 placeholder="tu-usuario"
                 className="min-w-0 flex-1 bg-transparent px-3 py-3.5 text-sm text-white outline-none placeholder:text-slate-500 sm:px-4"
                  {...register('handle', {
