@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ErrorMessage from "../components/ErrorMessage";
 import PasswordStrengthChecklist from "../components/PasswordStrengthCkeckList";
 import type { RegisterForm } from "../types";
+import axios from "axios";
 
 export default function RegisterView() {
   const initialState:RegisterForm ={
@@ -18,8 +19,15 @@ export default function RegisterView() {
 
   const passwordValue = watch('password') || ''
   
-  const handleRegister = (formData: RegisterForm) =>{
-    console.log(formData);
+  const handleRegister = async (formData: RegisterForm) =>{
+    try {
+      const {data} = await axios.post('http://localhost:4000/auth/register', formData)
+      console.log(data);
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
     
   }
   return (
@@ -105,8 +113,7 @@ export default function RegisterView() {
               <input
                 id="handle"
                 type="text"
-                autoComplete="angeloarevalo"
-                placeholder="tu-usuario"
+                placeholder="angelo-arevalo"
                 className="min-w-0 flex-1 bg-transparent px-3 py-3.5 text-sm text-white outline-none placeholder:text-slate-500 sm:px-4"
                  {...register('handle', {
                   required:'Tu nombre de usuario es obligatorio'
