@@ -23,7 +23,7 @@ export const createAccount = async(req:Request , res:Response) =>{
     user.password = await hashPassword(password)
     user.handle = handle
     await  user.save()
-    res.status(200).json({msg: 'Registro recibido correctamente'})
+    res.status(201).json({msg: 'Registro recibido correctamente'})
 }
 
 
