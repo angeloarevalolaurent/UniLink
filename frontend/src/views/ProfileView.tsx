@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form"
 import ErrorMessage from "../components/ErrorMessage";
-import { useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { ProfileForm, User } from "../types";
+import { toast } from "sonner";
+import { updateProfile } from "../api/UniLinkAPI";
 
 
 
@@ -17,9 +19,19 @@ export default function ProfileView() {
 
     })
 
+    const updateProfileMutation = useMutation({
+        mutationFn:updateProfile,
+        onError:(error) =>{
+            toast.error(error.message)
+        },
+        onSuccess:(data) => {
+            toast.success(data)
+            queryClient.invalidateQueries({queryKey:['user']})
+        }
+    })
 
     const handleProfileForm = (formData:ProfileForm) =>{
-        console.log(formData);
+        updateProfileMutation.mutate(formData);
         
     }
     return (
@@ -70,6 +82,7 @@ export default function ProfileView() {
                     rows={4}
                     className="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-4 placeholder-slate-400 text-slate-700 font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all resize-none"
                     placeholder="Cuéntanos un poco sobre ti..."
+                    {...register('description')}
                 />
             </div>
 
