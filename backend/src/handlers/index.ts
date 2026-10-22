@@ -46,3 +46,7 @@ export const login = async(req:Request , res:Response) =>{
     res.send(token)
     res.status(200).json({msg: 'Has iniciado sesión correctamente'})
 }
+
+export const getUser = async(req:Request , res:Response) =>{
+   res.json(req.user)
+}
