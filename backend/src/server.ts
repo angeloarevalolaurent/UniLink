@@ -1,6 +1,7 @@
 import express from "express";
 import cors from 'cors'
 import 'dotenv/config'
+import './config/cloudinary';
 import router from "./router";
 import { connectDB } from "./config/db";
 import { corsConfig } from "./config/cors";

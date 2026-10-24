@@ -4,17 +4,16 @@ import type { ProfileForm, User } from "../types";
 
 
 export async function getUser(){
-try {
-      const {data} = await api<User>(`/user`)
-      return data
-      
-    } catch (error) {
+      try {
+        const {data} = await api<User>(`/user`)
+        return data
 
-      if (isAxiosError(error) && error.response) {
-         console.log(error.response.data.error);
+      } catch (error) {
+
+        if (isAxiosError(error) && error.response) {
+          console.log(error.response.data.error);
+        }
       }
-      
-    }
 }
 
 export async function updateProfile(formData:ProfileForm) {
