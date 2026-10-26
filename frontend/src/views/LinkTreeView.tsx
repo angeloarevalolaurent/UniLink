@@ -6,6 +6,11 @@ export default function LinkTreeView() {
 
   const [uniLiks, setUniLinks]= useState(social)
 
+  const handleLink = ( e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
+    console.log(e.target.value);
+    console.log(e.target.name);
+    
+  }
 
   return (
     <>
@@ -14,6 +19,7 @@ export default function LinkTreeView() {
         <UniLinkInput
           key={link.name}
           link={link}
+          handleLink={handleLink}
         />
       )}
 
