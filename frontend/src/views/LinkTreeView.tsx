@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { social } from "../data/social"
 import UniLinkInput from "../components/UniLinkInput"
+import { isValidUrl } from "../utils"
+import { toast } from "sonner"
 
 export default function LinkTreeView() {
 
@@ -13,12 +15,19 @@ export default function LinkTreeView() {
   }
 
 
-  const handleEnableLink =(socialNerwork:string)=>{
-    const enabledLinks = uniLiks.map(link => link.name === socialNerwork ?
-                          {...link, enabled: !link.enabled} : link)
-    setUniLinks(enabledLinks)                     
-  }
-
+  const handleEnableLink =(socialNetwork:string)=>{
+      const updateLinks = uniLiks.map(link => {
+        if(link.name === socialNetwork) {
+          if (isValidUrl(link.url)) {
+            return {...link, enabled:!link.enabled}
+          }else{
+            toast.error('URL no válida')
+          }  
+        }
+        return link
+      })
+      setUniLinks(updateLinks)
+    }
   return (
     <>
     <div className="space-y-5">
