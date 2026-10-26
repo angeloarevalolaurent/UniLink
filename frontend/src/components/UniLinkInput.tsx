@@ -4,10 +4,11 @@ import { classNames } from "../utils"
 
 type UniLinkInputProps={
     link: UniLink
-    handleLink:(e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => void
+    handleUrlChange:(e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => void
+    handleEnableLink: (socialNerwork: string) => void
 }
 
-export default function UniLinkInput({link, handleLink}:UniLinkInputProps) {
+export default function UniLinkInput({link, handleUrlChange, handleEnableLink}:UniLinkInputProps) {
 
   return (
     <>
@@ -26,14 +27,14 @@ export default function UniLinkInput({link, handleLink}:UniLinkInputProps) {
                 className="flex-1 bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-lg px-4 py-2.5 outline-none transition-all focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 value={link.url}
                 name={link.name}
-                onChange={handleLink}
+                onChange={handleUrlChange}
                 
             />
 
 
             <Switch
                 checked={link.enabled}
-                onChange={() => {}}
+                onChange={() => handleEnableLink(link.name)}
                 className={classNames(
                     link.enabled ? 'bg-blue-500' : 'bg-gray-200',
                     'relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'

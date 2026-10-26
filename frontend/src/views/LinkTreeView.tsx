@@ -6,10 +6,17 @@ export default function LinkTreeView() {
 
   const [uniLiks, setUniLinks]= useState(social)
 
-  const handleLink = ( e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
+  const handleUrlChange = ( e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
     const uploadLink = uniLiks.map(item => item.name === e.target.name ?
       {...item, url:e.target.value} : item)
     setUniLinks(uploadLink)
+  }
+
+
+  const handleEnableLink =(socialNerwork:string)=>{
+    const enabledLinks = uniLiks.map(link => link.name === socialNerwork ?
+                          {...link, enabled: !link.enabled} : link)
+    setUniLinks(enabledLinks)                     
   }
 
   return (
@@ -19,7 +26,8 @@ export default function LinkTreeView() {
         <UniLinkInput
           key={link.name}
           link={link}
-          handleLink={handleLink}
+          handleUrlChange={handleUrlChange}
+          handleEnableLink={handleEnableLink}
         />
       )}
 
