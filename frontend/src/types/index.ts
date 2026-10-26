@@ -9,6 +9,9 @@ export type User = {
     links:string
 }
 
+export type UpdateProfilePayload = Pick<User, 'handle' | 'description' | 'image' | 'links'>
+
+
 export type RegisterForm = Pick<User, 'email' | 'handle'| 'name'> & {
     password: string
     password_confirmation: string

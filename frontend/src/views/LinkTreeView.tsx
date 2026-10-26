@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { social } from "../data/social"
 import UniLinkInput from "../components/UniLinkInput"
 import { isValidUrl } from "../utils"
 import { toast } from "sonner"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { updateProfile } from "../api/UniLinkAPI"
-import type { User } from "../types"
+import type { SocialNetwork, User } from "../types"
 
 
 export default function LinkTreeView() {
@@ -14,14 +14,6 @@ export default function LinkTreeView() {
 
   const queryClient = useQueryClient()
   const user : User = queryClient.getQueryData(['user'])!
-
-
-  const handleUrlChange = ( e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
-    const uploadLink = uniLiks.map(item => item.name === e.target.name ?
-      {...item, url:e.target.value} : item)
-    setUniLinks(uploadLink)
-
-  }
   
   const {mutate} = useMutation({
     mutationFn:updateProfile,
@@ -32,6 +24,31 @@ export default function LinkTreeView() {
         toast.success('Actualizado Correctamente')
       }
   })
+
+  useEffect(()=> {
+    const updateData = uniLiks.map(item => {
+      const userLink = JSON.parse(user.links).find((link: SocialNetwork) => link.name === item.name)
+      if (userLink) {
+        return{...item, url: userLink.url, enabled: userLink.enabled}
+      }
+      return item
+    })
+    setUniLinks(updateData)
+  },[])
+
+  const handleUrlChange = ( e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
+    const uploadLink = uniLiks.map(item => item.name === e.target.name ?
+      {...item, url:e.target.value} : item)
+    setUniLinks(uploadLink)
+
+      queryClient.setQueryData(['user'], (prevData: User) => {
+        return{
+          ...prevData,
+          links: JSON.stringify(uploadLink)
+        }
+      })
+  }
+  
   
   const handleEnableLink =(socialNetwork:string)=>{
     const updateLinks = uniLiks.map(link => {
