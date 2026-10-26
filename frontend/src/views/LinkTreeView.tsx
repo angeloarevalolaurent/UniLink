@@ -27,7 +27,8 @@ export default function LinkTreeView() {
         return link
       })
       setUniLinks(updateLinks)
-    }
+  }
+  
   return (
     <>
     <div className="space-y-5">
