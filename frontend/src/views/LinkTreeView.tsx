@@ -3,6 +3,8 @@ import { social } from "../data/social"
 import UniLinkInput from "../components/UniLinkInput"
 import { isValidUrl } from "../utils"
 import { toast } from "sonner"
+import { useMutation } from "@tanstack/react-query"
+import { updateProfile } from "../api/UniLinkAPI"
 
 export default function LinkTreeView() {
 
@@ -13,6 +15,16 @@ export default function LinkTreeView() {
       {...item, url:e.target.value} : item)
     setUniLinks(uploadLink)
   }
+
+  const {mutate} = useMutation({
+    mutationFn:updateProfile,
+    onError:(error)=>{
+        toast.error(error.message)
+      },
+      onSuccess:() =>{
+        toast.success('Actualizado Correctamente')
+      }
+  })
 
 
   const handleEnableLink =(socialNetwork:string)=>{
@@ -28,7 +40,7 @@ export default function LinkTreeView() {
       })
       setUniLinks(updateLinks)
   }
-  
+
   return (
     <>
     <div className="space-y-5">
@@ -44,7 +56,7 @@ export default function LinkTreeView() {
        <button
             type="submit"
             className="w-full bg-cyan-400 hover:bg-cyan-500 p-3 text-slate-900 font-bold uppercase rounded-lg transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 cursor-pointer"
-           
+            
         >
             Guardar Cambios
         </button>
