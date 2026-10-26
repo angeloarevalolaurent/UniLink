@@ -38,6 +38,12 @@ export default function ProfileView() {
         },
         onSuccess:(data) =>{
             toast.success(data.message)
+            queryClient.setQueryData(['user'], (prevData: User)=>{
+                return{
+                    ...prevData,
+                    image: data.image
+                }
+            })
         }
     })
 
