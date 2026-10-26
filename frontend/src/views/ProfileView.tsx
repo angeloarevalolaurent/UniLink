@@ -3,7 +3,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { ProfileForm, User } from "../types";
 import { toast } from "sonner";
-import { updateProfile } from "../api/UniLinkAPI";
+import { updateProfile, uploadImage } from "../api/UniLinkAPI";
 
 
 
@@ -29,6 +29,24 @@ export default function ProfileView() {
             queryClient.invalidateQueries({queryKey:['user']})
         }
     })
+
+
+    const uploadImageMutation = useMutation({
+        mutationFn: uploadImage,
+        onError:(error)=>{
+            toast.error(error.message)
+        },
+        onSuccess:(data) =>{
+            toast.success(data.message)
+        }
+    })
+
+    const handleImageForm = ( e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) =>{
+        console.log(e.target.files);
+        if (e.target.files) {
+            uploadImageMutation.mutate(e.target.files[0])
+        }
+    }
 
     const handleProfileForm = (formData:ProfileForm) =>{
         updateProfileMutation.mutate(formData);
@@ -99,7 +117,7 @@ export default function ProfileView() {
                     name="handle"
                     className="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:uppercase file:tracking-wider file:bg-cyan-550 file:bg-cyan-500 file:text-white hover:file:bg-cyan-600 cursor-pointer transition-all file:transition-colors"
                     accept="image/*"
-                    onChange={ () => {} }
+                    onChange={ handleImageForm}
                 />
             </div>
 
