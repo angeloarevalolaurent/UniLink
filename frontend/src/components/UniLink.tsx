@@ -56,8 +56,30 @@ export default function UniLink({data}: UniLinkProps) {
                         <div className="flex-1 bg-white shadow-xl shadow-slate-200/50 rounded-2xl border border-slate-100 p-8">
                             <Outlet />
                         </div>
-                        <div className="w-full lg:w-96 bg-slate-900 shadow-xl shadow-slate-900/10 px-6 py-8 rounded-2xl border border-slate-800 space-y-6">
-                            {/* Panel lateral de widgets o información secundaria */}
+                         <div className="w-full md:w-96 bg-slate-800 px-5 py-10 space-y-6 shadow-lg rounded-2xl flex flex-col items-center">
+                            {/* Handle / Usuario */}
+                            <p className="text-3xl font-extrabold text-center text-white tracking-wide">
+                                {data.handle}
+                            </p>
+
+                            {/* Imagen de Perfil (Corregido max-w y estilizado como avatar) */}
+                            {data.image && (
+                                <img 
+                                    src={data.image} 
+                                    alt="Imagen de Perfil" 
+                                    className="mx-auto w-32 h-32 md:w-40 md:h-40 object-cover rounded-full shadow-md border-4 border-slate-700" 
+                                />
+                            )}
+
+                            {/* Descripción */}
+                            {data.description && (
+                                <p className="text-center text-base font-normal text-slate-300 px-2">
+                                    {data.description}
+                                </p>
+                            )}
+
+                            
+
                         </div>
                     </div>
                 </main>
