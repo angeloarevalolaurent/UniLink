@@ -7,9 +7,9 @@ export default function LinkTreeView() {
   const [uniLiks, setUniLinks]= useState(social)
 
   const handleLink = ( e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
-    console.log(e.target.value);
-    console.log(e.target.name);
-    
+    const uploadLink = uniLiks.map(item => item.name === e.target.name ?
+      {...item, url:e.target.value} : item)
+    setUniLinks(uploadLink)
   }
 
   return (
