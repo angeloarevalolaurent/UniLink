@@ -2,7 +2,9 @@
 import { Link, Outlet } from "react-router-dom";
 import { Toaster } from "sonner";
 import NavigationTabs from '../components/NavegationTabs';
-import type { User } from "../types";
+import type { SocialNetwork, User } from "../types";
+import { useEffect, useState } from "react";
+import DevUniLink from "./DevUniLink";
 
 type UniLinkProps = {
     data: User
@@ -10,6 +12,13 @@ type UniLinkProps = {
 
 export default function UniLink({data}: UniLinkProps) {
 
+   const [enabledLinks, setEnabledLinks] = useState<SocialNetwork[]>
+   (JSON.parse(data.links).filter((item: SocialNetwork) => item.enabled))
+
+
+    useEffect(()=> {
+        setEnabledLinks(JSON.parse(data.links).filter((item: SocialNetwork) => item.enabled))
+    },[data])
     return (
         <>
             <header className="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 shadow-md">
@@ -78,7 +87,15 @@ export default function UniLink({data}: UniLinkProps) {
                                 </p>
                             )}
 
-                            
+                            <div className="mt-20 flex flex-col gap-5">
+                                {enabledLinks.map(link => (
+                              
+                                   <DevUniLink
+                                        key={link.name}
+                                        link={link}
+                                   />
+                                ))}
+                            </div>
 
                         </div>
                     </div>
