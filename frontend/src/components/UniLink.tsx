@@ -45,7 +45,7 @@ export default function UniLink({data}: UniLinkProps) {
                     <div className="flex justify-end mt-6">
                         <Link 
                             className="group inline-flex items-center gap-2.5 bg-white border border-slate-200 hover:border-cyan-400 px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all duration-200"
-                            to={'/angeloarevalo'}
+                            to={`/${data.handle}`}
                             target="_blank"
                             rel="noreferrer noopener"
                         >
