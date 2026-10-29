@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import { getUserByHandle } from "../api/UniLinkAPI"
+import type { NotFoundView } from "../components/NotFound"
 
 
 export default function HandleView() {
@@ -13,6 +14,9 @@ export default function HandleView() {
         queryKey:['handle', handle],
         retry:1
     })
+
+    if(isLoading) return 'cargando...'
+    if(error) return  <Navigate to={'/404'}/> 
 
     console.log(data);
     
