@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
 import { Navigate, useParams } from "react-router-dom"
 import { getUserByHandle } from "../api/UniLinkAPI"
-import HandleData from "../components/HandleData"
+import { HandleData } from "../components/HandleData"
+
 
 
 
