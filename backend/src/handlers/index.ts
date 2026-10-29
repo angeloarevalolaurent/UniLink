@@ -128,3 +128,14 @@ export const uploadImage = async(req:Request , res:Response) =>{
         });
     }
 }
+
+export const getUserByHandle = async(req:Request , res:Response) =>{
+    try {
+        const {handle} = req.params
+        console.log('desde getuserhandle', handle);
+        
+    } catch (e) {
+        const error = new Error('Hubo un Error')
+        return res.status(500).json({error: error.message})
+    }
+}
