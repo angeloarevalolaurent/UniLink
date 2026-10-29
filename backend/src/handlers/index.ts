@@ -132,7 +132,7 @@ export const uploadImage = async(req:Request , res:Response) =>{
 export const getUserByHandle = async(req:Request , res:Response) =>{
     try {
         const {handle} = req.params
-        const userExits = await User.findOne({handle})
+        const userExits = await User.findOne({handle}).select('-_id -__v -email -password')
 
         if (!userExits) {
             return res.status(404).json({
