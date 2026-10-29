@@ -9,6 +9,8 @@ export type User = {
     links:string
 }
 
+export type UserHandle = Pick<User, 'description'|'handle'|'image'|'links'|'name'>
+
 export type UpdateProfilePayload = Pick<User, 'handle' | 'description' | 'image' | 'links'>
 
 
@@ -32,3 +34,4 @@ export type SocialNetwork ={
 }
 
 export type UniLink = Pick<SocialNetwork, 'name' | 'url'| 'enabled'>
+
