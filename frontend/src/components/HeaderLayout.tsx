@@ -187,15 +187,15 @@ export default function HeaderLayout({ children }: HeaderLayoutProps) {
       `}</style>
 
       {/* CONTENEDOR PRINCIPAL DEL MOCKUP CON ANIMACIONES */}
-      <div className="relative w-full max-w-sm sm:max-w-md flex items-center justify-center min-h-[520px] my-2">
+      <div className="relative w-full max-w-sm sm:max-w-md flex items-center justify-center min-h-130 my-2">
 
         {/* Fondo Orgánico Difuminado */}
         <div 
-          className={`absolute inset-0 m-auto w-[280px] sm:w-[380px] h-[280px] sm:h-[380px] rounded-full bg-gradient-to-tr ${themeStyles.gradientBlob} blur-[60px] pointer-events-none transition-all duration-700 ease-in-out`} 
+          className={`absolute inset-0 m-auto w-70 sm:w-95 h-70 sm:h-95 rounded-full bg-linear-to-tr ${themeStyles.gradientBlob} blur-[60px] pointer-events-none transition-all duration-700 ease-in-out`} 
         />
 
         {/* MOCKUP DEL SMARTPHONE */}
-        <div className={`relative z-10 w-[270px] sm:w-[310px] bg-slate-900/95 border-[5px] border-slate-800 rounded-[38px] p-3.5 shadow-2xl backdrop-blur-xl ${themeStyles.accentGlow} transition-all duration-300`}>
+        <div className={`relative z-10 w-67.5 sm:w-77.5 bg-slate-900/95 border-[5px] border-slate-800 rounded-[38px] p-3.5 shadow-2xl backdrop-blur-xl ${themeStyles.accentGlow} transition-all duration-300`}>
           
           {/* Notch del teléfono */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-4 bg-slate-800 rounded-b-xl z-20 flex items-center justify-center gap-2">

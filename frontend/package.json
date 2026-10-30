@@ -20,6 +20,8 @@
     "react-dom": "^19.2.8",
     "react-hook-form": "^7.90.0",
     "react-router-dom": "^7.18.4",
+    "react-slugify": "^5.0.0",
+    "slugify": "^1.6.9",
     "sonner": "^2.0.8",
     "tailwindcss": "^4.3.3"
   },
