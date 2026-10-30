@@ -89,7 +89,11 @@ export default function ProfileView() {
                         className="w-full border border-slate-200 bg-slate-50/50 rounded-xl py-3.5 pl-8 pr-4 placeholder-slate-400 text-slate-700 font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
                         placeholder="tu-nombre-de-usuario"
                         {...register('handle',{
-                            required: "El nombre de usuario es Obligatorio"
+                            required: "El nombre de usuario es obligatorio",
+                            minLength: {
+                                value: 4,
+                                message: "El handle debe tener al menos 4 caracteres"
+                            }
                         })}
                     />
                 </div>

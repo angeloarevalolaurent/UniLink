@@ -11,7 +11,7 @@ export default function Header() {
         
         {/* LOGO E IDENTIDAD VECTORIAL */}
         <Link 
-          to="/" 
+          to="/admin" 
           className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-cyan-400/50 rounded-xl p-1 transition-all"
         >
           {/* Isotipo SVG de Conectividad con Resplandor Cyan */}

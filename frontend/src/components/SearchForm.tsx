@@ -52,7 +52,12 @@ export default function SearchForm() {
                         placeholder="elonmusk, zuck, jeffbezos"
                         {...register("handle", {
                             required: "Un Nombre de Usuario es obligatorio",
+                            minLength: {
+                                value: 4,
+                                message: "El handle debe tener al menos 4 caracteres"
+                            }
                         })}
+                        
                     />
                 </div>
 

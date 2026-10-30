@@ -125,8 +125,13 @@ export default function RegisterView() {
                 placeholder="angelo-arevalo"
                 className="min-w-0 flex-1 bg-transparent px-3 py-3.5 text-sm text-white outline-none placeholder:text-slate-500 sm:px-4"
                  {...register('handle', {
-                  required:'Tu nombre de usuario es obligatorio'
+                    required: "El nombre de usuario es obligatorio",
+                    minLength: {
+                        value: 4,
+                        message: "El handle debe tener al menos 4 caracteres"
+                    }
                 })}
+               
               />
               
             </div>
