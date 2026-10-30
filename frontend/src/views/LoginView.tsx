@@ -7,8 +7,10 @@ import { toast } from "sonner";
 import { isAxiosError } from "axios";
 
 
+
 export default function LoginView() {
   const navigate = useNavigate()
+
 
   const initialState = {
     email:'',
@@ -21,7 +23,9 @@ export default function LoginView() {
    try {
       const {data} = await api.post(`/auth/login`, formData)
       localStorage.setItem('AUTH_TOKEN', data)
-    navigate('/admin')
+      
+      toast.success('Has iniciado sesión correctamente')
+      navigate('/admin')
       
     } catch (error) {
 
