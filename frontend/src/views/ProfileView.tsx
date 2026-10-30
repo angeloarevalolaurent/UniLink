@@ -7,6 +7,7 @@ import { updateProfile, uploadImage } from "../api/UniLinkAPI";
 
 
 
+
 export default function ProfileView() {
 
     const queryClient = useQueryClient()
@@ -24,9 +25,10 @@ export default function ProfileView() {
         onError:(error) =>{
             toast.error(error.message)
         },
-        onSuccess:(data) => {
+        onSuccess:(data, variables) => {
             toast.success(data)
             queryClient.invalidateQueries({queryKey:['user']})
+            window.open(`${window.location.origin}/${variables.handle}`, '_blank')
         }
     })
 
@@ -56,9 +58,11 @@ export default function ProfileView() {
 
     const handleProfileForm = (formData:ProfileForm) =>{
         const user : User = queryClient.getQueryData(['user'])!
-        user.description = formData.description
-        user.handle = formData.handle
-        updateProfileMutation.mutate(user)
+        updateProfileMutation.mutate({
+        ...user,
+        handle: formData.handle,
+        description: formData.description
+    })
     }
     return (
         <form 
