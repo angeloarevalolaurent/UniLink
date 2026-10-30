@@ -11,7 +11,7 @@ export default function AuthLayout() {
           {/* Brand */}
           <div className="mb-8 flex items-center justify-center gap-2">
             <img
-              src="/logo.png"
+              src="/logo.svg"
               alt="Logo UniLink"
               className="h-16 w-16 object-contain sm:h-20 sm:w-20"
             />

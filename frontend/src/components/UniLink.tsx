@@ -5,6 +5,7 @@ import NavigationTabs from '../components/NavegationTabs';
 import type { SocialNetwork, User } from "../types";
 import { useEffect, useState } from "react";
 import DevUniLink from "./DevUniLink";
+import Header from "./Header";
 
 type UniLinkProps = {
     data: User
@@ -21,21 +22,7 @@ export default function UniLink({data}: UniLinkProps) {
     },[data])
     return (
         <>
-            <header className="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 shadow-md">
-                <div className="mx-auto max-w-6xl px-6 py-4 flex flex-col md:flex-row items-center md:justify-between">
-                    <div className="w-full flex justify-center md:justify-start md:w-1/3">
-                        <img src="/logo.png" className="h-12 w-12 object-contain sm:h-14 sm:w-14 drop-shadow-sm" alt="Logo" />
-                    </div>
-                    <div className="mt-4 md:mt-0 md:w-1/3 flex justify-center md:justify-end">
-                        <button
-                            className="bg-cyan-500 hover:bg-cyan-400 active:scale-95 transition-all px-5 py-2.5 text-white uppercase font-bold text-xs tracking-wider rounded-xl shadow-lg shadow-cyan-500/20 cursor-pointer"
-                            onClick={() => {}}
-                        >
-                            Cerrar Sesión
-                        </button>
-                    </div>
-                </div>
-            </header>
+            <Header/>
 
             <div className="bg-slate-50 min-h-[calc(100vh-5rem)] py-10">
                 <main className="mx-auto max-w-6xl px-6 md:px-0">
