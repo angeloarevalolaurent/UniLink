@@ -1,13 +1,19 @@
+import { useQueryClient } from "@tanstack/react-query";
 
-type AdminNavigationProps = {
-  onLogout?: () => void;
-};
 
-export default function AdminNavigation({ onLogout }: AdminNavigationProps) {
+export default function AdminNavigation() {
+
+  const queryClient = useQueryClient()
+
+  const logout = () =>{
+    localStorage.removeItem('AUTH_TOKEN')
+    queryClient.invalidateQueries({queryKey: ['user']})
+  }
+
   return (
     <button
       type="button"
-      onClick={onLogout}
+      onClick={logout}
       className="flex items-center gap-2 bg-slate-800/90 hover:bg-rose-500/10 text-slate-300 hover:text-rose-400 border border-slate-700/80 hover:border-rose-500/30 px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow-rose-500/10 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-500/40"
     >
       {/* Icono Vectorial de Cerrar Sesión */}
