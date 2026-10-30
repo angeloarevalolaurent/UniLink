@@ -25,10 +25,10 @@ export default function ProfileView() {
         onError:(error) =>{
             toast.error(error.message)
         },
-        onSuccess:(data, variables) => {
+        onSuccess:(data) => {
             toast.success(data)
             queryClient.invalidateQueries({queryKey:['user']})
-            window.open(`${window.location.origin}/${variables.handle}`, '_blank')
+           
         }
     })
 

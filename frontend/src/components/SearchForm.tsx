@@ -49,7 +49,7 @@ export default function SearchForm() {
                         autoComplete="off"
                         spellCheck="false"
                         className="bg-transparent text-white font-semibold placeholder-slate-500 focus:outline-none flex-1 text-sm sm:text-base border-none ring-0 focus:ring-0 p-0 tracking-wide"
-                        placeholder="elonmusk, zuck, jeffbezos"
+                        placeholder="angeloarevalo, arevalo-17, angelodev"
                         {...register("handle", {
                             required: "Un Nombre de Usuario es obligatorio",
                             minLength: {

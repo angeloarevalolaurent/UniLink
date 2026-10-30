@@ -210,7 +210,7 @@ export default function HeaderLayout({ children }: HeaderLayoutProps) {
             <div className="relative mb-2.5">
               <div className={`w-16 h-16 rounded-full bg-slate-800 p-0.5 border-2 ${themeStyles.accentBorder} shadow-md overflow-hidden`}>
                 <img 
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=256" 
+                  src="/perfil.jfif" 
                   alt="Avatar" 
                   className="w-full h-full object-cover rounded-full"
                 />
