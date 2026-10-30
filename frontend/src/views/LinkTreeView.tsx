@@ -6,12 +6,14 @@ import { toast } from "sonner"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { updateProfile } from "../api/UniLinkAPI"
 import type { SocialNetwork, User } from "../types"
+import { useNavigate } from "react-router-dom"
 
 
 export default function LinkTreeView() {
 
   const [uniLiks, setUniLinks]= useState(social)
 
+  const navigate = useNavigate()
   const queryClient = useQueryClient()
   const user : User = queryClient.getQueryData(['user'])!
   
@@ -21,7 +23,8 @@ export default function LinkTreeView() {
         toast.error(error.message)
       },
       onSuccess:() =>{
-        toast.success('Actualizado Correctamente')
+        toast.success('¡Casi listo! Presiona Guardar Cambios para aplicar la configuración.')
+        navigate('/admin/profile')
       }
   })
 
@@ -88,7 +91,7 @@ export default function LinkTreeView() {
             className="w-full bg-cyan-400 hover:bg-cyan-500 p-3 text-slate-900 font-bold uppercase rounded-lg transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 cursor-pointer"
             onClick={() => mutate(user)}
         >
-            Guardar Cambios
+            Siguiente
         </button>
       </div>
     </>
